@@ -1,6 +1,8 @@
 Docker Pentaho Data Integration
 ===============================
 
+Update to version 8.2 from 7.1 andrespp/docker-pdi (https://github.com/andrespp/docker-pdi)
+
 # Introduction
 
 DockerFile for [Pentaho Data Integration](https://sourceforge.net/projects/pentaho/) (a.k.a kettel / PDI)
@@ -12,7 +14,7 @@ This image is intendend to allow execution os PDI transformations and jobs throu
 ## Basic Syntax
 
 ```
-$ docker container run --rm andrespp/pdi
+$ docker container run --rm fagos/pentaho-pdi-kettle
 
 Usage:	/entrypoint.sh COMMAND
 
@@ -29,13 +31,13 @@ Options:
 ## Running Transformations
 
 ```
-$ docker container run --rm -v $(pwd):/jobs andrespp/pdi runt sample/dummy.ktr
+$ docker container run --rm -v $(pwd):/jobs fagos/pentaho-pdi-kettle runt sample/dummy.ktr
 ```
 
 ## Running Jobs
 
 ```
-$ docker container run --rm -v $(pwd):/jobs andrespp/pdi runj  sample/dummy.kjb
+$ docker container run --rm -v $(pwd):/jobs fagos/pentaho-pdi-kettle runj  sample/dummy.kjb
 ```
 
 ## Running Spoon (UI)
@@ -47,7 +49,7 @@ $ docker run -it --rm -v /tmp/.X11-unix/:/tmp/.X11-unix/:ro \
         -v $(pwd):/jobs \
         -e XAUTH=$(xauth list|grep `uname -n` | cut -d ' ' -f5) -e "DISPLAY" \
         --name spoon \
-        andrespp/pdi spoon
+        fagos/pentaho-pdi-kettle spoon
 ```
 
 ### Using startup script (Installing)
@@ -73,7 +75,7 @@ In order to use a custom `kettle.properties`, you need to leave the file availab
 
 ```bash
 $ # Custom properties in $(pwd)/kettle.properties
-$ docker container run --rm -v $(pwd):/jobs andrespp/pdi runj  sample/dummy.kjb
+$ docker container run --rm -v $(pwd):/jobs fagos/pentaho-pdi-kettle runj  sample/dummy.kjb
 ```
 
 # Environment variables
@@ -82,11 +84,11 @@ This image uses several environment variables in order to control its behavior, 
 
 | Environment variable | Default value | Note |
 | -------------------- | ------------- | -----|
-| PDI\_VERSION | 7.1 | |
+| PDI\_VERSION | 8.2 | |
 | |  | |
 
 # Issues
 
 If you have any problems with or questions about this image, please contact me
-through a [GitHub issue](https://github.com/andrespp/docker-pdi/issues).
+through a [GitHub issue](https://github.com/fabiogomessilva/docker-pdi/issues).
 
